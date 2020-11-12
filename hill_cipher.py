@@ -5,12 +5,14 @@ def pad_text(text, key):
         text += "Z" * remainder
     return text, original_len
 
+
 def multiply_matrices(x, y):
     result = []
     y_len = len(y)
     for row in x:
         result.append(sum(row[i] * y[i] for i in range(y_len)))
     return [value % 26 for value in result]
+
 
 def encrypt(text, key):
     result = ''
@@ -23,12 +25,14 @@ def encrypt(text, key):
         start, end = start + key_len, end + key_len
     return result
 
+
 def main():
     text = input("Enter the text (without space): ").upper()
     key = [[9, 4], [5, 7]]
     text, original_len = pad_text(text, key)
     result = encrypt(text, key)
     print(result[:original_len])
+
 
 if __name__ == "__main__":
     main()
