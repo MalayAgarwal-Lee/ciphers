@@ -1,4 +1,14 @@
 def pad_text(text, key):
+    '''
+    Function which pads the plaintext when the text is indivisible by key
+
+    Arguments:
+        text: str, the text to be padded
+        key: list, the key being used
+
+    Returns:
+        The padded text and its length before padding
+    '''
     original_len = len(text)
     remainder = original_len % len(key)
     if remainder != 0:
@@ -7,6 +17,16 @@ def pad_text(text, key):
 
 
 def multiply_matrices(x, y):
+    '''
+    Function which multiplies a matrix, x with a column matrix, y (mod 26)
+
+    Arguments:
+        x: list, a square matrix
+        y: list, a column matrix
+
+    Returns:
+        The resultant column matrix
+    '''
     result = []
     y_len = len(y)
     for row in x:
@@ -15,6 +35,16 @@ def multiply_matrices(x, y):
 
 
 def encrypt(text, key):
+    '''
+    Function which encrypts a plaintext according to a key
+
+    Arguments:
+        text: str, the plaintext
+        key: list, the key to be used
+
+    Returns:
+        The encrypted text
+    '''
     result = ''
     key_len, text_len = len(key), len(text)
     for start in range(0, text_len, key_len):
