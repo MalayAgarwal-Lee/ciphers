@@ -2,7 +2,7 @@ def pad_text(text, key):
     original_len = len(text)
     remainder = original_len % len(key)
     if remainder != 0:
-        text += "Z" * remainder
+        text += "Z" * (len(key) - remainder)
     return text, original_len
 
 
@@ -17,12 +17,10 @@ def multiply_matrices(x, y):
 def encrypt(text, key):
     result = ''
     key_len, text_len = len(key), len(text)
-    start, end = 0, key_len
-    while start < text_len:
-        offsets = [ord(char) - 65 for char in text[start:end]]
+    for start in range(0, text_len, key_len):
+        offsets = [ord(char) - 65 for char in text[start:start + key_len]]
         encrypted_text = multiply_matrices(key, offsets)
         result += ''.join(chr(char + 65) for char in encrypted_text)
-        start, end = start + key_len, end + key_len
     return result
 
 
